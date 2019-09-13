@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NosSeusPes", "NosSeusPes\NosSeusPes.csproj", "{FEE50FD7-FD59-43C5-B16F-D05268017A50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NosSeusPesWPF", "NosSeusPesWPF\NosSeusPesWPF.csproj", "{92E3F219-E5E1-440D-8F28-882EB8023078}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEE50FD7-FD59-43C5-B16F-D05268017A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE50FD7-FD59-43C5-B16F-D05268017A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE50FD7-FD59-43C5-B16F-D05268017A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE50FD7-FD59-43C5-B16F-D05268017A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E3F219-E5E1-440D-8F28-882EB8023078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E3F219-E5E1-440D-8F28-882EB8023078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E3F219-E5E1-440D-8F28-882EB8023078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E3F219-E5E1-440D-8F28-882EB8023078}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E49E2DE2-5F34-41B0-8E7F-465809F18494}
+	EndGlobalSection
+EndGlobal
