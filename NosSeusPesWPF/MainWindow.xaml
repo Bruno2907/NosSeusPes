@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="ButtonVendas" Click="ButtonVendas_Click" Content="VENDAS" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+        <Button x:Name="ButtonVendas" Click="ButtonVendas_Click" Content="VENDAS" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" MinWidth="100" MinHeight="15"/>
 
     </StackPanel>
 </Window>

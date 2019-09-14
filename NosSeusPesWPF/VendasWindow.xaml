@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NosSeusPesWPF"
         mc:Ignorable="d"
-        Title="VendasWindow" Height="450" Width="800">
+        Title="VendasWindow" Height="450" Width="800"
+        Name="Janela">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,13 +21,34 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="CLIENTE:" VerticalAlignment="Center" Margin="10"/>
-        <ComboBox ItemsSource="{Binding Path=Vendas}" DisplayMemberPath="Cliente.Nome" SelectedItem="{Binding Path=VendaSelecionada}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Grid.Column="1" Margin="10"/>
-        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" Margin="10">
+        <ComboBox ItemsSource="{Binding Path=Clientes}" DisplayMemberPath="Nome" SelectedItem="{Binding Path=ClienteSelecionado}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10"/>
+        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=Vendas}"  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" Margin="10">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn Header="Modelo"></DataGridComboBoxColumn>
-                <DataGridComboBoxColumn Header="Tamanho"></DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo.Modelo.Nome}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tamanho" Binding="{Binding Path=Modelo.Tamanho}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quantidade" Binding="{Binding Path=QuantidadeDeItens}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Preço por item" Binding="{Binding Path=PrecoPorItem}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Data da venda" Binding="{Binding Path=DataDaVenda}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+        <TextBlock Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10"/>
+        <DataGrid CanUserAddRows="False" Grid.Row="4" Grid.ColumnSpan="3" ItemsSource="{Binding Path=NovaVenda}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Modelo">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.Sapatos, ElementName=Janela}" DisplayMemberPath="Nome" SelectedValue="{Binding Path=DataContext.SapatoSelecionado, ElementName=Janela}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Tamanho">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.Estoques, ElementName=Janela}" DisplayMemberPath="Tamanho" SelectedValue="{Binding Path=Modelo}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
