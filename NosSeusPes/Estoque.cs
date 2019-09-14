@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace NosSeusPes
 {
-    public class Cliente
+    public class Estoque
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
+        public Sapato Modelo { get; set; }
+        public int Tamanho { get; set; }
+        public int Quantidade { get; set; }
     }
 }

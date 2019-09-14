@@ -8,8 +8,9 @@ namespace NosSeusPes
 {
     public class Venda
     {
+        public int Id { get; set; }
         public int QuantidadeDeItens { get; set; }
-        public Sapato Modelo { get; set; }
+        public Estoque Modelo { get; set; }
         public decimal PrecoPorItem { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime DataDaVenda { get; set; }

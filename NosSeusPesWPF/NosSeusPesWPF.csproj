@@ -64,6 +64,10 @@
     <Compile Include="SapatoWindow.xaml.cs">
       <DependentUpon>SapatoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VendasWindow.xaml.cs">
+      <DependentUpon>VendasWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\VendasViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +81,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SapatoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VendasWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

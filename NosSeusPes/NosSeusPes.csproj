@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="Estoque.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="PessoaFisica.cs" />
     <Compile Include="PessoaJuridica.cs" />
     <Compile Include="Program.cs" />

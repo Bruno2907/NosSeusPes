@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace NosSeusPesWPF
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Lógica interna para VendasWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VendasWindow : Window
     {
-        public MainWindow ()
+        public VendasWindow ()
         {
             InitializeComponent ();
-            ButtonVendas_Click (null, null);
-        }
-
-        private void ButtonVendas_Click (object sender, RoutedEventArgs e)
-        {
-            new VendasWindow ().ShowDialog ();
+            DataContext = new ViewModel.VendasViewModel ();
         }
     }
 }
