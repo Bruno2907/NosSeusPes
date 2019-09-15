@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace NosSeusPesWPF.ViewModel
 {
@@ -46,7 +48,32 @@ namespace NosSeusPesWPF.ViewModel
         }
 
         public ObservableCollection<Estoque> Estoques { get; set; }
-        public Estoque EstoqueSelecionado { get; set; }
+        private Estoque _estoqueSelecionado { get; set; }
+        public Estoque EstoqueSelecionado
+        {
+            get
+            {
+                return _estoqueSelecionado;
+            }
+            set
+            {
+                _estoqueSelecionado = value;
+                NovaVenda[0].Modelo = _estoqueSelecionado;
+                DataGridRow row = (DataGridRow)DataGridCompra.ItemContainerGenerator.ContainerFromIndex (0);
+                var cellContent = DataGridCompra.Columns[2].GetCellContent (row);
+                var cellContentPresenter = (ContentPresenter)cellContent;
+                DataTemplate editingTemplate = cellContentPresenter.ContentTemplate;
+                Slider slider = editingTemplate.FindName ("SliderQuantidade", cellContentPresenter) as Slider;
+                slider.Maximum = _estoqueSelecionado.Quantidade;
+                if (NovaVenda[0].QuantidadeDeItens > slider.Maximum)
+                {
+                    NovaVenda[0].QuantidadeDeItens = (int)slider.Maximum;
+                    slider.Value = slider.Maximum;
+                }
+                var BindedModel = cellContentPresenter.Content;
+                PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
+            }
+        }
 
         public ObservableCollection<Sapato> Sapatos { get; set; }
         private Sapato _sapatoSelecionado;
@@ -82,6 +109,7 @@ namespace NosSeusPesWPF.ViewModel
         public ObservableCollection<Venda> NovaVenda { get; set; }
 
         private Model model;
+        public DataGrid DataGridCompra { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

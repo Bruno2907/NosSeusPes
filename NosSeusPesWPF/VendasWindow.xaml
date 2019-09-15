@@ -31,8 +31,8 @@
                 <DataGridTextColumn Header="Data da venda" Binding="{Binding Path=DataDaVenda}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10"/>
-        <DataGrid CanUserAddRows="False" Grid.Row="4" Grid.ColumnSpan="3" ItemsSource="{Binding Path=NovaVenda}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+        <TextBlock x:Name="FormularioParaCompra" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10"/>
+        <DataGrid x:Name="DataGridCompra" CanUserAddRows="False" Grid.Row="4" Grid.ColumnSpan="3" ItemsSource="{Binding Path=NovaVenda}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Modelo">
                     <DataGridTemplateColumn.CellTemplate>
@@ -44,11 +44,28 @@
                 <DataGridTemplateColumn Header="Tamanho">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Path=DataContext.Estoques, ElementName=Janela}" DisplayMemberPath="Tamanho" SelectedValue="{Binding Path=Modelo}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.Estoques, ElementName=Janela, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Tamanho" SelectedValue="{Binding Path=DataContext.EstoqueSelecionado, ElementName=Janela}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Quantidade" MinWidth="500">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Slider x:Name="SliderQuantidade" Value="{Binding Path=QuantidadeDeItens, UpdateSourceTrigger=PropertyChanged}" Maximum="{Binding Path=Modelo.Quantidade}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox x:Name="TextBoxQuantidadeDeItens" TextChanged="TextBoxQuantidadeDeItens_TextChanged" Text="{Binding Path=QuantidadeDeItens, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Column="2" HorizontalAlignment="Left" MinWidth="200">
+        </DockPanel>
+        <TextBlock Text="TESTE TESTE TESTE"></TextBlock>
     </Grid>
 </Window>

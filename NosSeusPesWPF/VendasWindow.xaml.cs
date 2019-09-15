@@ -19,10 +19,33 @@ namespace NosSeusPesWPF
     /// </summary>
     public partial class VendasWindow : Window
     {
+        ViewModel.VendasViewModel VendasViewModel { get; set; }
+
         public VendasWindow ()
         {
             InitializeComponent ();
-            DataContext = new ViewModel.VendasViewModel ();
+            VendasViewModel = new ViewModel.VendasViewModel
+            {
+                DataGridCompra = DataGridCompra
+            };
+            DataContext = VendasViewModel;
+        }
+
+        private void Slider_ValueChanged (object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            VendasViewModel.NovaVenda[0].QuantidadeDeItens = (int)e.NewValue;
+        }
+
+        private void TextBoxQuantidadeDeItens_TextChanged (object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (int.TryParse (textBox.Text, out int result))
+            {
+                if (result > VendasViewModel.NovaVenda[0].Modelo.Quantidade)
+                {
+                    textBox.Text = VendasViewModel.NovaVenda[0].Modelo.Quantidade.ToString ();
+                }
+            }
         }
     }
 }
