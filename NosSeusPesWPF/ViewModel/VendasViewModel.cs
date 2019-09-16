@@ -59,19 +59,12 @@ namespace NosSeusPesWPF.ViewModel
             {
                 _estoqueSelecionado = value;
                 NovaVenda[0].Modelo = _estoqueSelecionado;
-                DataGridRow row = (DataGridRow)DataGridCompra.ItemContainerGenerator.ContainerFromIndex (0);
-                var cellContent = DataGridCompra.Columns[2].GetCellContent (row);
-                var cellContentPresenter = (ContentPresenter)cellContent;
-                DataTemplate editingTemplate = cellContentPresenter.ContentTemplate;
-                Slider slider = editingTemplate.FindName ("SliderQuantidade", cellContentPresenter) as Slider;
-                slider.Maximum = _estoqueSelecionado.Quantidade;
-                if (NovaVenda[0].QuantidadeDeItens > slider.Maximum)
+                if (_estoqueSelecionado != null)
                 {
-                    NovaVenda[0].QuantidadeDeItens = (int)slider.Maximum;
-                    slider.Value = slider.Maximum;
+                    NovaVenda[0].PrecoPorItem = _estoqueSelecionado.Modelo.Preco;
+                    AtualizarSlider ();
+                    PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
                 }
-                var BindedModel = cellContentPresenter.Content;
-                PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
             }
         }
 
@@ -86,20 +79,8 @@ namespace NosSeusPesWPF.ViewModel
             set
             {
                 _sapatoSelecionado = value;
-                // Mesmo esquema do cliente
-                while (Estoques.Count > 0)
-                {
-                    Estoques.RemoveAt (0);
-                }
-                foreach (Estoque e in model.Estoques
-                    .Where (es => es.Modelo.Id == _sapatoSelecionado.Id)
-                    .ToList ())
-                {
-                    Estoques.Add (e);
-                }
-                NovaVenda[0].Modelo = model.Estoques
-                    .Where (es => es.Modelo.Id == _sapatoSelecionado.Id)
-                    .FirstOrDefault ();
+                AtualizarListaDeEstoque ();
+                AtualizarSlider ();
                 PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
             }
         }
@@ -109,26 +90,147 @@ namespace NosSeusPesWPF.ViewModel
         public ObservableCollection<Venda> NovaVenda { get; set; }
 
         private Model model;
-        public DataGrid DataGridCompra { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public DataGrid DataGridCompra { get; set; }
 
         public VendasViewModel ()
         {
             model = new Model ();
+
             Vendas = new ObservableCollection<Venda> ();
             NovaVenda = new ObservableCollection<Venda>
             {
                 new Venda ()
+                {
+                }
             };
+
+            Sapatos = new ObservableCollection<Sapato>();
+            AtualizarListaDeSapatos ();
+
+            Estoques = new ObservableCollection<Estoque> ();
+            AtualizarListaDeEstoque ();
 
             Clientes = new ObservableCollection<Cliente> (model.Clientes.ToList ());
             ClienteSelecionado = model.Clientes.FirstOrDefault ();
+        }
 
-            Estoques = new ObservableCollection<Estoque> ();
+        public ContentPresenter GetContentPresenter (int row, int column, DataGrid dataGrid)
+        {
+            DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex (row);
+            var cellContent = DataGridCompra.Columns[column].GetCellContent (dataGridRow);
+            return (ContentPresenter)cellContent;
+        }
 
-            Sapatos = new ObservableCollection<Sapato> (model.Sapatos.ToList ());
-            SapatoSelecionado = model.Sapatos.FirstOrDefault ();
+        public void AtualizarListaDeEstoque ()
+        {
+            // Mesmo esquema do cliente
+            while (Estoques.Count > 0)
+            {
+                Estoques.RemoveAt (0);
+            }
+            foreach (Estoque e in model.Estoques
+                .Where (es => es.Modelo.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
+                .ToList ())
+            {
+                Estoques.Add (e);
+            }
+            if (Estoques.Where (e => e.Id == _estoqueSelecionado?.Id).Count () == 0)
+            {
+                _estoqueSelecionado = model.Estoques
+                    .Where (es => es.Modelo.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
+                    .FirstOrDefault ();
+            }
+            NovaVenda[0].Modelo = _estoqueSelecionado;
+        }
+
+        private void AtualizarListaDeSapatos ()
+        {
+            while (Sapatos.Count > 0)
+            {
+                Sapatos.RemoveAt (0);
+            }
+            foreach (Sapato s in model.Sapatos.ToList ())
+            {
+                if (model.Estoques.Where (es => es.Modelo.Id == s.Id && es.Quantidade > 0).Count () > 0)
+                {
+                    Sapatos.Add (s);
+                }
+            }
+            if (Sapatos.Count > 0)
+            {
+                if (!Sapatos.Contains (_sapatoSelecionado))
+                {
+                    _sapatoSelecionado = Sapatos[0];
+                }
+            }
+            else
+            {
+                _sapatoSelecionado = new Sapato ()
+                {
+                    Id = -1,
+                    Nome = "NÃO EXISTEM SAPATOS DISPONIVEIS PARA COMPRA"
+                };
+            }
+        }
+
+        public void AtualizarSlider ()
+        {
+            if (DataGridCompra != null)
+            {
+                DataGridRow dataGridRow = (DataGridRow)DataGridCompra.ItemContainerGenerator.ContainerFromIndex (0);
+                //
+                // SLIDER
+                //
+                var cellContent = DataGridCompra.Columns[2].GetCellContent (dataGridRow);
+                var contentPresenter = (ContentPresenter)cellContent;
+                Slider slider = contentPresenter.ContentTemplate.FindName ("SliderQuantidade", cellContent) as Slider;
+                slider.Maximum = _estoqueSelecionado.Quantidade;
+                DataGridCompra.Columns[2].MinWidth = slider.Maximum;
+                if (NovaVenda[0].QuantidadeDeItens > slider.Maximum)
+                {
+                    NovaVenda[0].QuantidadeDeItens = (int)slider.Maximum;
+                    slider.Value = slider.Maximum;
+                }
+                //
+                // TEXTO QUANTIDADE
+                //
+                TextBlock textBox = DataGridCompra.Columns[4].GetCellContent (dataGridRow) as TextBlock;
+                textBox.Text = _estoqueSelecionado.Modelo.Preco.ToString ();
+            }
+        }
+
+        public void DeletarRegistroVenda (int ID)
+        {
+            Venda v;
+            v = Vendas.Where (ve => ve.Id == ID).FirstOrDefault ();
+            Vendas.Remove (v);
+            model.Vendas.Remove (v);
+            model.SaveChanges ();
+        }
+
+        public void SalvarNovaCompra ()
+        {
+            Venda v = NovaVenda[0];
+            if (v.Modelo != null && v.QuantidadeDeItens > 0)
+            {
+                v.Cliente = ClienteSelecionado;
+                v.DataDaVenda = DateTime.Now;
+                Vendas.Add (v);
+                model.Vendas.Add (v);
+                NovaVenda.RemoveAt (0);
+                NovaVenda.Add (new Venda ()
+                {
+                    Modelo = _estoqueSelecionado,
+                    PrecoPorItem = _estoqueSelecionado.Modelo.Preco
+                });
+                _estoqueSelecionado.Quantidade -= v.QuantidadeDeItens;
+                model.SaveChanges ();
+                AtualizarListaDeSapatos ();
+                AtualizarListaDeEstoque ();
+            }
         }
     }
 }

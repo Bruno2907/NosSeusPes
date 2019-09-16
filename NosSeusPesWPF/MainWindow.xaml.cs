@@ -30,5 +30,10 @@ namespace NosSeusPesWPF
         {
             new VendasWindow ().ShowDialog ();
         }
+
+        private void ButtonSapatos_Click (object sender, RoutedEventArgs e)
+        {
+            new SapatoWindow ().ShowDialog ();
+        }
     }
 }

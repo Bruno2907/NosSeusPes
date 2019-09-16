@@ -24,7 +24,7 @@ namespace NosSeusPesWPF
         public VendasWindow ()
         {
             InitializeComponent ();
-            VendasViewModel = new ViewModel.VendasViewModel
+            VendasViewModel = new ViewModel.VendasViewModel ()
             {
                 DataGridCompra = DataGridCompra
             };
@@ -39,13 +39,31 @@ namespace NosSeusPesWPF
         private void TextBoxQuantidadeDeItens_TextChanged (object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (int.TryParse (textBox.Text, out int result))
+            if (VendasViewModel.NovaVenda[0].Modelo != null)
             {
-                if (result > VendasViewModel.NovaVenda[0].Modelo.Quantidade)
+                if (int.TryParse (textBox.Text, out int result))
                 {
-                    textBox.Text = VendasViewModel.NovaVenda[0].Modelo.Quantidade.ToString ();
+                    if (result > VendasViewModel.NovaVenda[0].Modelo.Quantidade)
+                    {
+                        textBox.Text = VendasViewModel.NovaVenda[0].Modelo.Quantidade.ToString ();
+                    }
                 }
             }
+            else
+            {
+                textBox.Text = "0";
+            }
+        }
+
+        private void ButtonSalvarNovaCompra_Click (object sender, RoutedEventArgs e)
+        {
+            VendasViewModel.SalvarNovaCompra ();
+        }
+
+        private void ButtonExcluir_Click (object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            VendasViewModel.DeletarRegistroVenda (id);
         }
     }
 }
