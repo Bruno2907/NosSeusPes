@@ -19,9 +19,25 @@ namespace NosSeusPesWPF
     /// </summary>
     public partial class SapatoWindow : Window
     {
+        public ViewModel.SapatoViewModel SapatoViewModel{ get; set; }
         public SapatoWindow()
         {
             InitializeComponent();
+
+            SapatoViewModel = new ViewModel.SapatoViewModel();
+
+            DataContext = SapatoViewModel;
+
+        }
+
+        private void SALVAR_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CANCELAR_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

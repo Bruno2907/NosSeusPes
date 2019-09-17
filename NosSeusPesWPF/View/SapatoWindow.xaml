@@ -27,6 +27,13 @@
         <CheckBox Content="CADARÇO" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="MATERIAL" VerticalAlignment="Center" Grid.Row="2"/>
         <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="MATERIAL" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Grid.Row="3" Grid.Column="1" Text="COR"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="COR" VerticalAlignment="Center" Grid.Row="3"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="PREÇO" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="PREÇO" VerticalAlignment="Center" Width="120" Grid.Row="4" Grid.Column="1"/>
+        <Image HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Grid.Row="5" Grid.Column="1"/>
+        <Button Content="SALVAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="7" x:Name="SALVAR" Click="SALVAR_Click"/>
+        <Button Content="CANCELAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="7" Grid.Column="1" x:Name="CANCELAR" Click="CANCELAR_Click"/>
 
     </Grid>
 </Window>
