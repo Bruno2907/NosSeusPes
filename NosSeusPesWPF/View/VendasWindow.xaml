@@ -17,15 +17,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="CLIENTE:" VerticalAlignment="Center" Margin="10"/>
             <ComboBox ItemsSource="{Binding Path=Clientes}" DisplayMemberPath="Nome" SelectedItem="{Binding Path=ClienteSelecionado}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10" Padding="10,3"/>
         </StackPanel>
-        <DataGrid IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=Vendas}"  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" Margin="10">
+        <DataGrid IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=Vendas}"  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo.Modelo.Nome}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tamanho" Binding="{Binding Path=Modelo.Tamanho}"></DataGridTextColumn>
@@ -43,7 +42,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="FormularioParaCompra" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10"/>
-        <DataGrid AutoGenerateColumns="False" x:Name="DataGridCompra" CanUserAddRows="False" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Path=NovaVenda}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+        <DataGrid AutoGenerateColumns="False" x:Name="DataGridCompra" CanUserAddRows="False" Grid.Row="3" ItemsSource="{Binding Path=NovaVenda}" VerticalAlignment="Center" Margin="10">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Modelo">
                     <DataGridTemplateColumn.CellTemplate>
@@ -59,7 +58,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Quantidade" MinWidth="100">
+                <DataGridTemplateColumn Width="*" Header="Quantidade">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Slider x:Name="SliderQuantidade" Value="{Binding Path=QuantidadeDeItens, UpdateSourceTrigger=PropertyChanged}" Maximum="{Binding Path=Modelo.Quantidade}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True"/>

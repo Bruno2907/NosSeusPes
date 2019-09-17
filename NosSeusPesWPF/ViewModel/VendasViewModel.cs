@@ -188,7 +188,7 @@ namespace NosSeusPesWPF.ViewModel
                 var contentPresenter = (ContentPresenter)cellContent;
                 Slider slider = contentPresenter.ContentTemplate.FindName ("SliderQuantidade", cellContent) as Slider;
                 slider.Maximum = _estoqueSelecionado.Quantidade;
-                DataGridCompra.Columns[2].MinWidth = slider.Maximum;
+                //DataGridCompra.Columns[2].MinWidth = slider.Maximum;
                 if (NovaVenda[0].QuantidadeDeItens > slider.Maximum)
                 {
                     NovaVenda[0].QuantidadeDeItens = (int)slider.Maximum;

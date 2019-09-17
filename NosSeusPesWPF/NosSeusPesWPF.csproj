@@ -61,13 +61,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SapatoWindow.xaml.cs">
+    <Compile Include="ViewModel\ClienteViewModel.cs" />
+    <Compile Include="View\ClienteWindow.xaml.cs">
+      <DependentUpon>ClienteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SapatoWindow.xaml.cs">
       <DependentUpon>SapatoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VendasWindow.xaml.cs">
+    <Compile Include="View\VendasWindow.xaml.cs">
       <DependentUpon>VendasWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\VendasViewModel.cs" />
+    <Page Include="View\ClienteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,11 +88,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SapatoWindow.xaml">
+    <Page Include="View\SapatoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="VendasWindow.xaml">
+    <Page Include="View\VendasWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
