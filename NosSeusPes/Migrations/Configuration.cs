@@ -51,25 +51,25 @@ namespace NosSeusPes.Migrations
 
             Estoque estoqueS1T38 = new Estoque
             {
-                Modelo = sapato,
+                Nome = sapato,
                 Tamanho = 38,
                 Quantidade = 380
             };
             Estoque estoqueS1T40 = new Estoque
             {
-                Modelo = sapato,
+                Nome = sapato,
                 Tamanho = 40,
                 Quantidade = 400
             };
             Estoque estoqueS1T42 = new Estoque
             {
-                Modelo = sapato,
+                Nome = sapato,
                 Tamanho = 42,
                 Quantidade = 419
             };
             Estoque estoqueS2T100 = new Estoque
             {
-                Modelo = sapato02,
+                Nome = sapato02,
                 Tamanho = 100,
                 Quantidade = 1
             };
@@ -79,19 +79,19 @@ namespace NosSeusPes.Migrations
             context.Estoques.AddOrUpdate (estoqueS2T100);
 
 
-            Venda venda = new Venda
+            Sapato venda = new Sapato
             {
                 QuantidadeDeItens = 99,
                 Modelo = estoqueS1T42,
-                PrecoPorItem = estoqueS1T42.Modelo.Preco,
+                PrecoPorItem = estoqueS1T42.Nome.Preco,
                 Cliente = pessoaFisica,
                 DataDaVenda = DateTime.Now
             };
-            Venda venda02 = new Venda
+            Sapato venda02 = new Sapato
             {
                 QuantidadeDeItens = 1,
                 Modelo = estoqueS2T100,
-                PrecoPorItem = estoqueS2T100.Modelo.Preco - 0.01M,
+                PrecoPorItem = estoqueS2T100.Nome.Preco - 0.01M,
                 Cliente = pessoaFisica02,
                 DataDaVenda = DateTime.Now
             };
