@@ -32,13 +32,12 @@ namespace NosSeusPesWPF
 
         private void SALVAR_Click(object sender, RoutedEventArgs e)
         {
-            SapatoViewModel.SalvarNovoSapato();
+
         }
 
         private void CANCELAR_Click(object sender, RoutedEventArgs e)
         {
-            int Id = (int)((Button)sender).CommandParameter;
-            SapatoViewModel.DeletarSapato(Id);
+
         }
     }
 }
