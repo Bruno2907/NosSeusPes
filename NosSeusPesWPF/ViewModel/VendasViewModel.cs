@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace NosSeusPesWPF.ViewModel
 {
     public class VendasViewModel : INotifyPropertyChanged
@@ -31,7 +30,7 @@ namespace NosSeusPesWPF.ViewModel
                 {
                     Vendas.RemoveAt (0);
                 }
-                foreach (Sapato venda in model.Vendas
+                foreach (Venda venda in model.Vendas
                     .Include ("Cliente")
                     .Include ("Modelo")
                     .Where (v => v.Cliente.Id == _clienteSelecionado.Id)
@@ -62,7 +61,7 @@ namespace NosSeusPesWPF.ViewModel
                 NovaVenda[0].Modelo = _estoqueSelecionado;
                 if (_estoqueSelecionado != null)
                 {
-                    NovaVenda[0].PrecoPorItem = _estoqueSelecionado.Nome.Preco;
+                    NovaVenda[0].PrecoPorItem = _estoqueSelecionado.Modelo.Preco;
                     AtualizarSlider ();
                     PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
                 }
@@ -86,9 +85,9 @@ namespace NosSeusPesWPF.ViewModel
             }
         }
 
-        public ObservableCollection<Sapato> Vendas { get; set; }
-        public Sapato VendaSelecionada { get; set; }
-        public ObservableCollection<Sapato> NovaVenda { get; set; }
+        public ObservableCollection<Venda> Vendas { get; set; }
+        public Venda VendaSelecionada { get; set; }
+        public ObservableCollection<Venda> NovaVenda { get; set; }
 
         private Model model;
 
@@ -100,10 +99,10 @@ namespace NosSeusPesWPF.ViewModel
         {
             model = new Model ();
 
-            Vendas = new ObservableCollection<Sapato> ();
-            NovaVenda = new ObservableCollection<Sapato>
+            Vendas = new ObservableCollection<Venda> ();
+            NovaVenda = new ObservableCollection<Venda>
             {
-                new Sapato ()
+                new Venda ()
                 {
                 }
             };
@@ -133,7 +132,7 @@ namespace NosSeusPesWPF.ViewModel
                 Estoques.RemoveAt (0);
             }
             foreach (Estoque e in model.Estoques
-                .Where (es => es.Nome.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
+                .Where (es => es.Modelo.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
                 .ToList ())
             {
                 Estoques.Add (e);
@@ -141,7 +140,7 @@ namespace NosSeusPesWPF.ViewModel
             if (Estoques.Where (e => e.Id == _estoqueSelecionado?.Id).Count () == 0)
             {
                 _estoqueSelecionado = model.Estoques
-                    .Where (es => es.Nome.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
+                    .Where (es => es.Modelo.Id == _sapatoSelecionado.Id && es.Quantidade > 0)
                     .FirstOrDefault ();
             }
             NovaVenda[0].Modelo = _estoqueSelecionado;
@@ -155,7 +154,7 @@ namespace NosSeusPesWPF.ViewModel
             }
             foreach (Sapato s in model.Sapatos.ToList ())
             {
-                if (model.Estoques.Where (es => es.Nome.Id == s.Id && es.Quantidade > 0).Count () > 0)
+                if (model.Estoques.Where (es => es.Modelo.Id == s.Id && es.Quantidade > 0).Count () > 0)
                 {
                     Sapatos.Add (s);
                 }
@@ -199,13 +198,13 @@ namespace NosSeusPesWPF.ViewModel
                 // TEXTO QUANTIDADE
                 //
                 TextBlock textBox = DataGridCompra.Columns[4].GetCellContent (dataGridRow) as TextBlock;
-                textBox.Text = _estoqueSelecionado.Nome.Preco.ToString ();
+                textBox.Text = _estoqueSelecionado.Modelo.Preco.ToString ();
             }
         }
 
         public void DeletarRegistroVenda (int ID)
         {
-            Sapato v;
+            Venda v;
             v = Vendas.Where (ve => ve.Id == ID).FirstOrDefault ();
             Vendas.Remove (v);
             model.Vendas.Remove (v);
@@ -214,7 +213,7 @@ namespace NosSeusPesWPF.ViewModel
 
         public void SalvarNovaCompra ()
         {
-            Sapato v = NovaVenda[0];
+            Venda v = NovaVenda[0];
             if (v.Modelo != null && v.QuantidadeDeItens > 0)
             {
                 v.Cliente = ClienteSelecionado;
@@ -222,10 +221,10 @@ namespace NosSeusPesWPF.ViewModel
                 Vendas.Add (v);
                 model.Vendas.Add (v);
                 NovaVenda.RemoveAt (0);
-                NovaVenda.Add (new Sapato ()
+                NovaVenda.Add (new Venda ()
                 {
                     Modelo = _estoqueSelecionado,
-                    PrecoPorItem = _estoqueSelecionado.Nome.Preco
+                    PrecoPorItem = _estoqueSelecionado.Modelo.Preco
                 });
                 _estoqueSelecionado.Quantidade -= v.QuantidadeDeItens;
                 model.SaveChanges ();

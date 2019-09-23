@@ -16,6 +16,6 @@ namespace NosSeusPes
         public virtual DbSet<PessoaFisica> PessoasFisicas{ get; set; }
         public virtual DbSet<PessoaJuridica> PessoasJuridicas{ get; set; }
         public virtual DbSet<Sapato> Sapatos{ get; set; }
-        public virtual DbSet<Sapato> Vendas{ get; set; }
+        public virtual DbSet<Venda> Vendas{ get; set; }
     }
 }

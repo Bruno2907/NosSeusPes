@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NosSeusPes
 {
-    public class Sapato
+    public class Venda
     {
         public int Id { get; set; }
         public int QuantidadeDeItens { get; set; }
