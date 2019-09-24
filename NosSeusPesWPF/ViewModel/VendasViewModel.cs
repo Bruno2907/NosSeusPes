@@ -171,7 +171,7 @@ namespace NosSeusPesWPF.ViewModel
                 _sapatoSelecionado = new Sapato ()
                 {
                     Id = -1,
-                    Nome = "NÃO EXISTEM SAPATOS DISPONIVEIS PARA COMPRA"
+                    Marca = "NÃO EXISTEM SAPATOS DISPONIVEIS PARA COMPRA"
                 };
             }
         }

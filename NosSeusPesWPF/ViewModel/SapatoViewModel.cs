@@ -12,6 +12,14 @@ namespace NosSeusPesWPF.ViewModel
     {
         public ObservableCollection<Sapato> Sapatos { get; set; }
         public Model model;
+
+        public SapatoViewModel()
+        {
+            model = new Model();
+            Sapatos = new ObservableCollection<Sapato>(model.Sapatos.ToList());
+            SapatoSelecionado = new Sapato();
+        }
+        public Sapato SapatoSelecionado { get; set; }
         public void DeletarSapato(int ID)
         {
             Sapato s;
@@ -20,5 +28,17 @@ namespace NosSeusPesWPF.ViewModel
             model.Sapatos.Remove(s);
             model.SaveChanges();
         }
+
+        public void SalvarNovoSapato()
+        {
+            Sapato s = SapatoSelecionado;
+            Sapatos.Add(s);
+            model.Sapatos.Add(s);
+            SapatoSelecionado = new Sapato();
+            model.SaveChanges();
+        }
     }
+
+
 }
+

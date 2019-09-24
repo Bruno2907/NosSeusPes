@@ -30,14 +30,28 @@ namespace NosSeusPesWPF
 
         }
 
+
         private void SALVAR_Click(object sender, RoutedEventArgs e)
         {
-
+            SapatoViewModel.SalvarNovoSapato();
+            Close();
         }
 
         private void CANCELAR_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
 
+        private void Cadarco_Checked(object sender, RoutedEventArgs e)
+        {
+            SapatoViewModel.SapatoSelecionado.Cadarco = true;
+
+        }
+
+        private void Cadarco_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            SapatoViewModel.SapatoSelecionado.Cadarco = false;
         }
     }
 }

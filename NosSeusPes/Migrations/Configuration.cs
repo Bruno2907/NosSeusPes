@@ -31,7 +31,7 @@ namespace NosSeusPes.Migrations
 
             Sapato sapato = new Sapato
             {
-                Nome = "Crocs",
+                Marca = "Crocs",
                 Cadarco = false,
                 Material = "Plastico",
                 Cor = "Branco",
@@ -39,7 +39,7 @@ namespace NosSeusPes.Migrations
             };
             Sapato sapato02 = new Sapato
             {
-                Nome = "Nike Super Pro Plus Limited Gold Edition",
+                Marca = "Nike Super Pro Plus Limited Gold Edition",
                 Cadarco = true,
                 Material = "Literally GOLD",
                 Cor = "Yellow",

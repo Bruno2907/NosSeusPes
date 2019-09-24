@@ -66,6 +66,9 @@
     <Compile Include="View\ClienteWindow.xaml.cs">
       <DependentUpon>ClienteWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EstoqueWindow.xaml.cs">
+      <DependentUpon>EstoqueWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SapatoWindow.xaml.cs">
       <DependentUpon>SapatoWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\EstoqueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SapatoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
