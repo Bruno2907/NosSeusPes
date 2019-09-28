@@ -53,10 +53,6 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Estoque.cs" />
-    <Compile Include="Migrations\201909240030340_marca.cs" />
-    <Compile Include="Migrations\201909240030340_marca.Designer.cs">
-      <DependentUpon>201909240030340_marca.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="PessoaFisica.cs" />
@@ -69,11 +65,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909240030340_marca.resx">
-      <DependentUpon>201909240030340_marca.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

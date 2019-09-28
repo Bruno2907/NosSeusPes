@@ -23,7 +23,8 @@ namespace NosSeusPesWPF
         public MainWindow ()
         {
             InitializeComponent ();
-            ButtonVendas_Click (null, null);
+            ButtonClientes_Click (null, null);
+            //ButtonVendas_Click (null, null);
         }
 
         private void ButtonVendas_Click (object sender, RoutedEventArgs e)
@@ -34,6 +35,11 @@ namespace NosSeusPesWPF
         private void ButtonSapatos_Click (object sender, RoutedEventArgs e)
         {
             new SapatoWindow ().ShowDialog ();
+        }
+
+        private void ButtonClientes_Click (object sender, RoutedEventArgs e)
+        {
+            new ClienteWindow ().ShowDialog (); 
         }
     }
 }

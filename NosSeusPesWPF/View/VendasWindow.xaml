@@ -26,7 +26,7 @@
         </StackPanel>
         <DataGrid IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=Vendas}"  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo.Modelo.Nome}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo.Modelo.Marca}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tamanho" Binding="{Binding Path=Modelo.Tamanho}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Quantidade" Binding="{Binding Path=QuantidadeDeItens}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Preço por item" Binding="{Binding Path=PrecoPorItem}"></DataGridTextColumn>
@@ -47,7 +47,7 @@
                 <DataGridTemplateColumn Header="Modelo">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Path=DataContext.Sapatos, ElementName=Janela}" DisplayMemberPath="Nome" SelectedValue="{Binding Path=DataContext.SapatoSelecionado, ElementName=Janela}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.Sapatos, ElementName=Janela}" DisplayMemberPath="Marca" SelectedValue="{Binding Path=DataContext.SapatoSelecionado, ElementName=Janela}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

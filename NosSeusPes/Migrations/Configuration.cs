@@ -39,10 +39,10 @@ namespace NosSeusPes.Migrations
             };
             Sapato sapato02 = new Sapato
             {
-                Marca = "Nike Super Pro Plus Limited Gold Edition",
+                Marca = "Nike Special Super Pro Plus Premium Limited Deluxe Edition",
                 Cadarco = true,
-                Material = "Literally GOLD",
-                Cor = "Yellow",
+                Material = "O-U-R-O",
+                Cor = "CorDeOuro",
                 Preco = 999999.99M
             };
             context.Sapatos.AddOrUpdate (sapato);

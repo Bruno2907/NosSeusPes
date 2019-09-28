@@ -14,5 +14,13 @@ namespace NosSeusPes
         public decimal PrecoPorItem { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime DataDaVenda { get; set; }
+
+        public decimal ValorTotal
+        {
+            get
+            {
+                return PrecoPorItem * QuantidadeDeItens;
+            }
+        }
     }
 }

@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace NosSeusPesWPF.View
+namespace NosSeusPesWPF
 {
     /// <summary>
     /// Lógica interna para ClienteWindow.xaml
     /// </summary>
     public partial class ClienteWindow : Window
     {
+        public ViewModel.ClienteViewModel ClienteViewModel { get; set; }
+
         public ClienteWindow()
         {
             InitializeComponent();
+            ClienteViewModel = new ViewModel.ClienteViewModel ();
+            DataContext = ClienteViewModel;
+            //DataNascimento.SetValue (TextBlock.TextProperty, "TESTE TESTE TESTE");
         }
     }
 }
