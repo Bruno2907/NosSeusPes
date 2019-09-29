@@ -26,7 +26,10 @@ namespace NosSeusPesWPF.ViewModel
             set
             {
                 _clienteSelecionado = value;
-                Vendas = new ObservableCollection<Venda> (model.Vendas.Where (v => v.Cliente.Id == _clienteSelecionado.Id).ToList ());
+                if (value != null)
+                {
+                    Vendas = new ObservableCollection<Venda> (model.Vendas.Where (v => v.Cliente.Id == _clienteSelecionado.Id).ToList ());
+                }
                 PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
             }
         }
@@ -42,9 +45,21 @@ namespace NosSeusPesWPF.ViewModel
             set
             {
                 _clienteTipoSelecionado = value;
+                if (_clienteTipoSelecionado.Equals (ClienteTipo[0]))
+                {
+                    NovoCliente = new PessoaFisica();
+                    ((PessoaFisica)NovoCliente).DataDeNascimento = DateTime.Now;
+                }
+                if (_clienteTipoSelecionado.Equals (ClienteTipo[1]))
+                {
+                    NovoCliente = new PessoaJuridica ();
+                }
+                //NovoCliente = (_clienteSelecionado.Equals (ClienteTipo[0])) ? new PessoaFisica () : new PessoaJuridica ();
                 PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
             }
         }
+
+        public Cliente NovoCliente { get; set; }
 
         public ObservableCollection<Venda> Vendas { get; set; }
 
@@ -61,7 +76,39 @@ namespace NosSeusPesWPF.ViewModel
             //_clienteTipoSelecionado = "";
             _clienteTipoSelecionado = ClienteTipo[0];
 
+            NovoCliente = new PessoaFisica ();
+            ((PessoaFisica)NovoCliente).DataDeNascimento = DateTime.Now;
+
             Vendas = new ObservableCollection<Venda> ();
+        }
+
+
+        public void CadastrarNovoCliente ()
+        {
+            Clientes.Add (NovoCliente);
+            model.Clientes.Add (NovoCliente);
+            model.SaveChanges ();
+            _clienteSelecionado = NovoCliente;
+            if (NovoCliente is PessoaFisica)
+            {
+                NovoCliente = new PessoaFisica ();
+                ((PessoaFisica)NovoCliente).DataDeNascimento = DateTime.Now;
+            }
+            if (NovoCliente is PessoaJuridica)
+            {
+                NovoCliente = new PessoaJuridica ();
+            }
+            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (""));
+        }
+
+
+        public void DeletarClienteSelecionado ()
+        {
+            model.Clientes.Remove (_clienteSelecionado);
+            Clientes.Remove (ClienteSelecionado);
+            //Clientes.Remove (Clientes.Where (c => c.Id == _clienteSelecionado.Id).FirstOrDefault ());
+            model.SaveChanges ();
+            ClienteSelecionado = model.Clientes.FirstOrDefault ();
         }
 
 
@@ -69,7 +116,8 @@ namespace NosSeusPesWPF.ViewModel
         {
             get
             {
-                return _clienteTipoSelecionado.Equals (ClienteTipo[0]);
+                //return _clienteTipoSelecionado.Equals (ClienteTipo[0]);
+                return NovoCliente is PessoaFisica;
             }
         }
 
@@ -78,7 +126,8 @@ namespace NosSeusPesWPF.ViewModel
         {
             get
             {
-                return _clienteTipoSelecionado.Equals (ClienteTipo[1]);
+                //return _clienteTipoSelecionado.Equals (ClienteTipo[1]);
+                return NovoCliente is PessoaJuridica;
             }
         }
 

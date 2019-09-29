@@ -28,5 +28,15 @@ namespace NosSeusPesWPF
             DataContext = ClienteViewModel;
             //DataNascimento.SetValue (TextBlock.TextProperty, "TESTE TESTE TESTE");
         }
+
+        private void ButtonCadastrarNovoCliente_Click (object sender, RoutedEventArgs e)
+        {
+            ClienteViewModel.CadastrarNovoCliente ();
+        }
+
+        private void ButtonDeletarCliente_Click (object sender, RoutedEventArgs e)
+        {
+            ClienteViewModel.DeletarClienteSelecionado ();
+        }
     }
 }

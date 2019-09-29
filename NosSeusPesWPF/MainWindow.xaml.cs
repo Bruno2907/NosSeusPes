@@ -23,7 +23,7 @@ namespace NosSeusPesWPF
         public MainWindow ()
         {
             InitializeComponent ();
-            ButtonClientes_Click (null, null);
+            //ButtonClientes_Click (null, null);
             //ButtonVendas_Click (null, null);
         }
 

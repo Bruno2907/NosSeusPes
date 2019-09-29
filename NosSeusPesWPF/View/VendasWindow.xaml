@@ -41,7 +41,7 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock x:Name="FormularioParaCompra" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10"/>
+        <TextBlock x:Name="FormularioParaCompra" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="FORMULÁRIO PARA COMPRA" Margin="10,50,10,10"/>
         <DataGrid AutoGenerateColumns="False" x:Name="DataGridCompra" CanUserAddRows="False" Grid.Row="3" ItemsSource="{Binding Path=NovaVenda}" VerticalAlignment="Center" Margin="10">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Modelo">
