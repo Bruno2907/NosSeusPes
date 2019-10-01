@@ -10,6 +10,7 @@
         <TextBlock Text="Calçados NosSeusPes" FontSize="72" Margin="0,100"></TextBlock>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="ButtonSapatos" Click="ButtonSapatos_Click" Content="SAPATOS" Margin="10" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="ESTOQUE" x:Name="ButtonEstoque" Click="ButtonEstoque_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="10"></Button>
             <Button x:Name="ButtonClientes" Click="ButtonClientes_Click" Content="CLIENTES" Margin="10" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button x:Name="ButtonVendas" Click="ButtonVendas_Click" Content="VENDAS" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="10"/>
         </StackPanel>

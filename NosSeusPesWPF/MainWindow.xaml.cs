@@ -41,5 +41,9 @@ namespace NosSeusPesWPF
         {
             new ClienteWindow ().ShowDialog (); 
         }
+
+        private void ButtonEstoque_Click (object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

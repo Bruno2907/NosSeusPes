@@ -87,13 +87,16 @@ namespace NosSeusPesWPF.ViewModel
 
         public ObservableCollection<Venda> Vendas { get; set; }
         public Venda VendaSelecionada { get; set; }
+        // Usando ObservableCollection aqui porque o exercício exigia um DataGrid
         public ObservableCollection<Venda> NovaVenda { get; set; }
 
         private Model model;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Para ter acesso aos seus itens
         public DataGrid DataGridCompra { get; set; }
+
 
         public VendasViewModel ()
         {
@@ -117,6 +120,9 @@ namespace NosSeusPesWPF.ViewModel
             ClienteSelecionado = model.Clientes.FirstOrDefault ();
         }
 
+
+        // Emprestado do StackOverflow, não sei como só sei que funciona
+        // Usado para ter acesso aos itens do DataGrid
         public ContentPresenter GetContentPresenter (int row, int column, DataGrid dataGrid)
         {
             DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex (row);
@@ -124,6 +130,8 @@ namespace NosSeusPesWPF.ViewModel
             return (ContentPresenter)cellContent;
         }
 
+
+        // Atualiza a lista de tamanho para cada sapato
         public void AtualizarListaDeEstoque ()
         {
             // Mesmo esquema do cliente
@@ -137,6 +145,7 @@ namespace NosSeusPesWPF.ViewModel
             {
                 Estoques.Add (e);
             }
+            // If evitando uma situações de divergência com o banco de dados
             if (Estoques.Where (e => e.Id == _estoqueSelecionado?.Id).Count () == 0)
             {
                 _estoqueSelecionado = model.Estoques
@@ -145,6 +154,8 @@ namespace NosSeusPesWPF.ViewModel
             }
             NovaVenda[0].Modelo = _estoqueSelecionado;
         }
+
+
 
         private void AtualizarListaDeSapatos ()
         {
