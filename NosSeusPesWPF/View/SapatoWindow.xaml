@@ -47,5 +47,6 @@
                 <DataGridTextColumn Header="Preço" Binding="{Binding Path=Preco}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
