@@ -19,9 +19,26 @@ namespace NosSeusPesWPF.View
     /// </summary>
     public partial class EstoqueWindow : Window
     {
+        ViewModel.EstoqueViewModel EstoqueViewModel { get; set; }
         public EstoqueWindow()
         {
             InitializeComponent();
+
+            EstoqueViewModel = new ViewModel.EstoqueViewModel();
+
+            DataContext = EstoqueViewModel;
+
+        }
+
+        private void ButtonAdicionar_Click(object sender, RoutedEventArgs e)
+        {
+            EstoqueViewModel.SalvarNovoEstoque();
+            Close();
+        }
+
+        private void ButtonCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
