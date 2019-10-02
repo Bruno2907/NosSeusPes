@@ -53,5 +53,11 @@ namespace NosSeusPesWPF
 
             SapatoViewModel.SapatoSelecionado.Cadarco = false;
         }
+
+        private void ButtonDeletarSapato_Click(object sender, RoutedEventArgs e)
+        {
+            SapatoViewModel.DeletarSapatoSelecionado();
+            Close();
+        }
     }
 }

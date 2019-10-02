@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:NosSeusPesWPF"
         mc:Ignorable="d"
         Title="SapatoWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -23,21 +25,22 @@
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="NOME" VerticalAlignment="Center"/>
         <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Path=SapatoSelecionado.Marca}" VerticalAlignment="Center" Width="120" Grid.Column="1"/>
-        
+
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="CADARÇO" VerticalAlignment="Center" Grid.Row="1"/>
         <CheckBox x:Name="Cadarco"  Checked="Cadarco_Checked" Unchecked="Cadarco_Unchecked"   Content="CADARÇO" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-        
+
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="MATERIAL" VerticalAlignment="Center" Grid.Row="2"/>
         <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Path=SapatoSelecionado.Material}" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="1"/>
-        
+
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="COR" VerticalAlignment="Center" Grid.Row="3"/>
         <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Grid.Row="3" Grid.Column="1" Text="{Binding Path=SapatoSelecionado.Cor}"/>
 
         <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Path=SapatoSelecionado.Preco}" VerticalAlignment="Center" Width="120" Grid.Row="4" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="PREÇO" VerticalAlignment="Center" Grid.Row="4"/>
-        
+
         <Button Content="SALVAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="7" x:Name="SALVAR" Click="SALVAR_Click"/>
         <Button Content="CANCELAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="7" Grid.Column="1" x:Name="CANCELAR" Click="CANCELAR_Click"/>
+
         <DataGrid Grid.RowSpan="2" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2" ItemsSource = "{Binding Path=Sapatos}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Path=Marca}"></DataGridTextColumn>
@@ -47,6 +50,6 @@
                 <DataGridTextColumn Header="Preço" Binding="{Binding Path=Preco}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ButtonDeletarSapato" Click="ButtonDeletarSapato_Click"   Content="DELETAR SAPATO" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="8" Margin="10,70,0,0"/>
     </Grid>
 </Window>

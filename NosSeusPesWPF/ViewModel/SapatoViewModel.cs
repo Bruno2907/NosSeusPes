@@ -37,6 +37,14 @@ namespace NosSeusPesWPF.ViewModel
             SapatoSelecionado = new Sapato();
             model.SaveChanges();
         }
+
+        public void DeletarSapatoSelecionado()
+        {
+            model.Sapatos.Remove(SapatoSelecionado);
+            Sapatos.Remove(SapatoSelecionado);
+            model.SaveChanges();
+            SapatoSelecionado = model.Sapatos.FirstOrDefault();
+        }
     }
 
 

@@ -39,5 +39,13 @@ namespace NosSeusPesWPF.ViewModel
         }
 
         public ObservableCollection<Sapato> Sapatos { get; set; }
+
+        public void ExcluirEstoqueSelecionado()
+        {
+            model.Estoques.Remove(EstoqueSelecionado);
+            Estoques.Remove(EstoqueSelecionado);
+            model.SaveChanges();
+            EstoqueSelecionado = model.Estoques.FirstOrDefault();
+        }
     }
 }

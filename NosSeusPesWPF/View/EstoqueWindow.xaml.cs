@@ -40,5 +40,11 @@ namespace NosSeusPesWPF.View
         {
             Close();
         }
+
+        private void ButtonDeletarEstoque_Click(object sender, RoutedEventArgs e)
+        {
+            EstoqueViewModel.ExcluirEstoqueSelecionado();
+            Close();
+        }
     }
 }
