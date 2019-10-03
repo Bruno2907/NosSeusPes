@@ -19,7 +19,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Path=EstoqueSelecionado.Tamanho}" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="10"/>
+        <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Path=EstoqueSelecionado.Tamanho}" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="10" Width="120"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="MODELO" VerticalAlignment="Center" Margin="10"/>
         
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TAMANHO" VerticalAlignment="Center" Grid.Row="1" Margin="10"/>
@@ -28,7 +28,7 @@
         <Button Content="ADICIONAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="4" x:Name="ButtonAdicionar" Click="ButtonAdicionar_Click" Margin="10,20"/>
         
         <Button Content="CANCELAR" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Row="4" Grid.Column="1" x:Name="ButtonCancelar" Click="ButtonCancelar_Click" Margin="10,20"/>
-        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Estoques}">
+        <DataGrid SelectedItem="{Binding Path=EstoqueParaExcluir}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Estoques}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Modelo" Binding="{Binding Path=Modelo.Marca}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tamanho" Binding="{Binding Path=Tamanho}"></DataGridTextColumn>

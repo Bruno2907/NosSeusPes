@@ -25,7 +25,7 @@ namespace NosSeusPesWPF
             InitializeComponent ();
             //ButtonClientes_Click (null, null);
             //ButtonVendas_Click (null, null);
-            new View.EstoqueWindow().ShowDialog();
+            //new View.EstoqueWindow().ShowDialog();
         }
 
         private void ButtonVendas_Click (object sender, RoutedEventArgs e)
@@ -45,6 +45,7 @@ namespace NosSeusPesWPF
 
         private void ButtonEstoque_Click (object sender, RoutedEventArgs e)
         {
+            new View.EstoqueWindow().ShowDialog();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace NosSeusPesWPF.ViewModel
     {
         public ObservableCollection<Sapato> Sapatos { get; set; }
         public Model model;
+        public Sapato SapatoParaExcluir { get; set; }
 
         public SapatoViewModel()
         {
@@ -40,10 +41,21 @@ namespace NosSeusPesWPF.ViewModel
 
         public void DeletarSapatoSelecionado()
         {
-            model.Sapatos.Remove(SapatoSelecionado);
-            Sapatos.Remove(SapatoSelecionado);
-            model.SaveChanges();
-            SapatoSelecionado = model.Sapatos.FirstOrDefault();
+            if (SapatoParaExcluir != null)
+            {
+                foreach (Estoque estoque in model.Estoques.Where(e => e.Modelo.Id == SapatoParaExcluir.Id).ToList())
+                {
+                    model.Estoques.Remove(model.Estoques.Where(e => e.Id == estoque.Id).FirstOrDefault());
+                }
+                foreach (Venda venda in model.Vendas.Where(v => v.Modelo.Modelo.Id == SapatoParaExcluir.Id).ToList())
+                {
+                    model.Vendas.Remove(model.Vendas.Where(v => v.Id == venda.Id).FirstOrDefault());
+                }
+                model.Sapatos.Remove(SapatoParaExcluir);
+                Sapatos.Remove(SapatoParaExcluir);
+                model.SaveChanges();
+               // SapatoSelecionado = model.Sapatos.FirstOrDefault();
+            }
         }
     }
 
