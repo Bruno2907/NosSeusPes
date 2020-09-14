@@ -76,10 +76,6 @@
     <Compile Include="View\SapatoWindow.xaml.cs">
       <DependentUpon>SapatoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\VendasWindow.xaml.cs">
-      <DependentUpon>VendasWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\VendasViewModel.cs" />
     <Page Include="View\ClienteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,10 +97,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SapatoWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\VendasWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,9 +129,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NosSeusPes\NosSeusPes.csproj">
+    <ProjectReference Include="..\NosSeusPes\EstoqueCalcadosConsole.csproj">
       <Project>{fee50fd7-fd59-43c5-b16f-d05268017a50}</Project>
-      <Name>NosSeusPes</Name>
+      <Name>EstoqueCalcadosConsole</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
