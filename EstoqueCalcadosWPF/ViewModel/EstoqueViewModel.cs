@@ -11,6 +11,7 @@ namespace NosSeusPesWPF.ViewModel
     class EstoqueViewModel
     {
         public ObservableCollection<Estoque> Estoques { get; set; }
+        public Estoque EstoqueParaExcluir { get; set; }
         public Model model;
         public EstoqueViewModel()
         {
@@ -42,10 +43,17 @@ namespace NosSeusPesWPF.ViewModel
 
         public void ExcluirEstoqueSelecionado()
         {
-            model.Estoques.Remove(EstoqueSelecionado);
-            Estoques.Remove(EstoqueSelecionado);
-            model.SaveChanges();
-            EstoqueSelecionado = model.Estoques.FirstOrDefault();
+            if (EstoqueParaExcluir != null)
+            {
+                foreach (Venda venda in model.Vendas.Where(v => v.Modelo.Id == EstoqueParaExcluir.Id).ToList())
+                {
+                    model.Vendas.Remove(model.Vendas.Where(v => v.Id == venda.Id).FirstOrDefault());
+                }
+                model.Estoques.Remove(EstoqueParaExcluir);
+                Estoques.Remove(EstoqueParaExcluir);
+                model.SaveChanges();
+                //EstoqueSelecionado = model.Estoques.FirstOrDefault();
+            }
         }
     }
 }
